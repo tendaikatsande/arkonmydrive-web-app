@@ -1,0 +1,56 @@
+<div class="container p-4 mx-auto h-full bg-[#F5F5F5]">
+  <div *ngIf="!isLoggedIn" class="login-container h-[492px] w-[604px]">
+    <div class="tabs ">
+      <button class="h-[56px] w-[241px] rounded-tl-[16px]  bg-black text-white">
+        Express Checkout
+      </button>
+      <button class="h-[56px] w-[241px] rounded-tr-[16px]  bg-white">
+        Login / Sign up
+      </button>
+    </div>
+    <div class="bg-white h-[436px] rounded-b-[16px]">
+      <div class="flex justify-between gap-2 px-[18px] py-[27px]">
+        <button
+          class="flex justify-center items-center gap-1 w-full border border-[#0C0C0C] rounded py-2 font-weight:600">
+          <embed src="./../../../../assets/icons/google_icon.svg" loading="lazy" />
+          Log in with Google
+        </button>
+        <button class="flex justify-center items-center gap-1 w-full border border-[#0C0C0C] rounded py-2">
+          <embed src="./../../../../assets/icons/apple_icon.svg" loading="lazy" />Log in with Apple
+        </button>
+      </div>
+      <div class="flex items-center">
+        <hr class="w-full">
+        <span class="px-2">or</span>
+        <hr class="w-full">
+      </div>
+
+      <form [formGroup]="form" autocomplete="disabled" novalidate role="form" class="px-[18px]">
+        <div class="flex items-center w-full h-[68px] my-4 rounded-lg bg-[#F3F3F3]">
+          <embed class="pl-[28px]" src="./../../../../assets/icons/mail.svg" loading="lazy" type="">
+          <input type="text" formControlName="username" autocomplete="disabled" placeholder="Email Address"
+            class="font-weight:600 h-full w-full bg-[#F3F3F3] outline-none ml-4" />
+        </div>
+
+        <div class="flex items-center w-full h-[68px] my-4 rounded-lg bg-[#F3F3F3]">
+          <embed class="pl-[28px]" src="./../../../../assets/icons/lock.svg" loading="lazy" type="">
+          <input type="password" formControlName="password" autocomplete="disabled" placeholder="Password"
+            class="h-full w-full bg-[#F3F3F3] outline-none ml-4" />
+        </div>
+
+        <button [disabled]="form.invalid" (click)="submit()"
+          class="w-full h-[68px] text-white bg-[#FD7C0A] rounded-lg my-2 disabled:bg-slate-300">
+          log in with Email
+        </button>
+
+        <a href="#" class="text-[#FD7C0A] underline">Forgot Password?</a>
+
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="isLoggedIn" class="login-container flex flex-col items-center justify-center h-[492px] w-[604px]">
+    <h3> User logged in : {{ user?.email  }}</h3>
+    <button class="  border border-[#0C0C0C] rounded p-2 m-4 font-weight:600" (click)="logOut()">log out</button>
+  </div>
+</div>
